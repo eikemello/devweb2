@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Registrar Transferência</title>
+</head>
+
+<body>
+	<header>
+		<%- include('../header.ejs'); %>
+	  </header>
+	<h1>Formulário para inclusão de obra de arte</h1>
+	<section>
+		<% if(errors) { %>
+			<ul>
+				<% for(let i=0; i < errors.length; i++){ %>
+					<li>
+						<%= errors[i].msg %>
+					</li>
+					<% } %>
+			</ul>
+			<% } %>
+	</section>
+	<form action="/ativo/salvar" method="post">
+		<input type="text" name="tipo" placeholder="tipo" value=<%= obra.tipo %>>
+		<input type="text" name="marca" placeholder="marca" value=<%= obra.marca %>>
+		<input type="text" name="modelo" placeholder="modelo" value=<%= obra.modelo %>>
+		<input type="text" name="desgaste" placeholder="desgaste" value=<%= obra.desgaste %>>
+		<input type="submit" value="enviar">
+	</form>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Transferência</title>
+</head>
+<body>
+    <header>
+        <%- include('../header.ejs'); %>
+      </header>
+    <h2>Atualizar Transferência</h2>
+    <form action="/obrasdearte/salvar" method="post">
+    <% for(let i=0; i<obra.length; i++) { %>
+        <h2>ID: <%= obra[i].id_ativo %></h2>
+		<input type="text" name="tipo" value=<%= obra[i].tipo %>>
+		<input type="text" name="marca" value=<%= obra[i].marca %>>
+		<input type="text" name="modelo" value=<%= obra[i].modelo %>>
+        <input type="text" name="desgaste"  value=<%= obra[i].desgaste %>>
+		<input type="text" name="disponilidade" value=<%= obra[i].disponibilidade %>>
+		<input type="submit" value="Atualizar">
+    <%}%>
+	</form>
+</body>
+</html>
