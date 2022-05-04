@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Atualizar Ativo</title>
 </head>
 
@@ -12,7 +13,7 @@
   <header>
     <%- include('../header.ejs'); %>
   </header>
-  <form action="/ativo/salvar" method="post">
+  <form action="/ativo/salvar" method="post" class="center">
     <input type="text" name="tipo" placeholder="tipo">
     <input type="text" name="marca" placeholder="marca">
     <input type="text" name="modelo" placeholder="modelo">

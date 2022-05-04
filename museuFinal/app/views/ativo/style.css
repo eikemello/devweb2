@@ -1,0 +1,14 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.center-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightblue;
+  margin-top: 20px;
+}
