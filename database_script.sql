@@ -18,7 +18,7 @@ SELECT * FROM cargo;
 
 CREATE TABLE funcionario (
     id_funcionario INT NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(80) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
     id_cargo INT NOT NULL,
     registrado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_funcionario`),
@@ -35,21 +35,22 @@ SELECT * FROM funcionario;
 
 CREATE TABLE ativo (
     id_ativo INT NOT NULL AUTO_INCREMENT,
-    tipo VARCHAR(45) NOT NULL,
-    marca VARCHAR(45) NOT NULL,
-    modelo VARCHAR(45) NOT NULL,
+    tipo VARCHAR(40) NOT NULL,
+    marca VARCHAR(30) NOT NULL,
+    modelo VARCHAR(20) NOT NULL,
+    serial_number VARCHAR(20) NOT NULL,
     registrado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    disponibilidade VARCHAR(45),
-    desgaste VARCHAR(45),
+    disponibilidade VARCHAR(20),
+    desgaste VARCHAR(20),
     PRIMARY KEY (`id_ativo`)
 );
-INSERT INTO ativo (tipo, marca, modelo, disponibilidade, desgaste) VALUES ('Monitor', 'LG', 'Ultrawide 29pol', 'Disponível', 'Novo'),
-																		('Monitor', 'Samsung', 'LCS23', 'Disponível', 'Novo'),
-																		('Monitor', 'Samsung', 'LCS27', 'Disponível', 'Novo'),
-																		('Monitor', 'Samsung', 'LCS29', 'Indisponível', 'Novo'),
-																		('Monitor', 'DELL', 'DELL23', 'Disponível', 'Novo'),
-																		('Monitor', 'DELL', 'DELL27', 'Disponível', 'Novo'),
-																		('Monitor', 'DELL', 'DELL29', 'Indisponível', 'Novo');
+INSERT INTO ativo (tipo, marca, modelo, serial_number, disponibilidade, desgaste) VALUES ('Monitor', 'LG', 'Ultrawide 29pol', 'HKL23AS', 'Disponível', 'Novo'),
+																		('Monitor', 'Samsung', 'LCS23', 'PAJKO43F', 'Disponível', 'Novo'),
+																		('Monitor', 'Samsung', 'LCS27', 'DAQ84NA8', 'Disponível', 'Novo'),
+																		('Monitor', 'Samsung', 'LCS29', 'LOKT61POP9', 'Indisponível', 'Novo'),
+																		('Monitor', 'DELL', 'DELL23', 'QW324TRY', 'Disponível', 'Novo'),
+																		('Monitor', 'DELL', 'DELL27', 'HUID0923798', 'Disponível', 'Novo'),
+																		('Monitor', 'DELL', 'DELL29', 'COP43HUL', 'Indisponível', 'Novo');
 SELECT * FROM ativo;
 
 CREATE TABLE ativo_emprestado (
