@@ -13,16 +13,15 @@
     <%- include('../header.ejs'); %>
   </header>
   <h2>Atualizar Transferência</h2>
-  <form action="/obrasdearte/salvar" method="post">
-    <% for(let i=0; i<obra.length; i++) { %>
-    <h2>ID: <%= obra[i].id_ativo %></h2>
-    <input type="text" name="tipo" value=<%= obra[i].tipo %>>
-    <input type="text" name="marca" value=<%= obra[i].marca %>>
-    <input type="text" name="modelo" value=<%= obra[i].modelo %>>
-    <input type="text" name="desgaste" value=<%= obra[i].desgaste %>>
-    <input type="text" name="disponilidade" value=<%= obra[i].disponibilidade %>>
+  <form action="/transferencia/salvar" method="post">
+    <h2>ID: </h2>
+    <input type="text" name="tipo">
+    <input type="text" name="marca">
+    <input type="text" name="modelo">
+    <input type="text" name="desgaste">
+    <input type="text" name="disponilidade">
     <input type="submit" value="Atualizar">
-    <%}%>
-	</form>
+  </form>
 </body>
+
 </html>

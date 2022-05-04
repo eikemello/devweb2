@@ -3,17 +3,15 @@ const app = require('./config/server');
 const routes = require('./app/routes/routes');
 
 
-routes.home(app);
-routes.salvarAtivo(app);
-routes.atualizarAtivo(app);
-routes.listarObra(app);
+routes.homeRoute(app);
 
-routes.registrarAtivo(app);
-routes.atualizarAtivo(app);
-routes.pesquisarAtivo(app);
-routes.removerAtivo(app);
+routes.registrarAtivoRoute(app);
+routes.salvarAtivoRoute(app);
+routes.atualizarAtivoRoute(app);
+routes.pesquisarAtivoRoute(app);
+routes.removerAtivoRoute(app);
 
-routes.registrarTransferencia(app);
-routes.atualizarTransferencia(app);
-routes.pesquisarTransferencia(app);
-routes.removerTransferencia(app);
+routes.registrarTransferenciaRoute(app);
+routes.atualizarTransferenciaRoute(app);
+routes.pesquisarTransferenciaRoute(app);
+routes.removerTransferenciaRoute(app);

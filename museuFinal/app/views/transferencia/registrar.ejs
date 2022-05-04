@@ -21,13 +21,13 @@
     </ul>
     <% } %>
   </section>
-  <form action="/ativo/salvar" method="post">
-    <input type="text" name="tipo" placeholder="antigo responsável" value=<%= obra.tipo %>>
-    <input type="text" name="marca" placeholder="atual responsável" value=<%= obra.marca %>>
-    <input type="text" name="tipo" placeholder="tipo" value=<%= obra.tipo %>>
-    <input type="text" name="marca" placeholder="marca" value=<%= obra.marca %>>
-    <input type="text" name="modelo" placeholder="modelo" value=<%= obra.modelo %>>
-    <input type="text" name="desgaste" placeholder="desgaste" value=<%= obra.desgaste %>>
+  <form action="/transferencia/salvar" method="post">
+    <input type="text" name="tipo" placeholder="antigo responsável" value=<%= transfer.tipo %>>
+    <input type="text" name="marca" placeholder="atual responsável" value=<%= transfer.marca %>>
+    <input type="text" name="tipo" placeholder="tipo" value=<%= transfer.tipo %>>
+    <input type="text" name="marca" placeholder="marca" value=<%= transfer.marca %>>
+    <input type="text" name="modelo" placeholder="modelo" value=<%= transfer.modelo %>>
+    <input type="text" name="desgaste" placeholder="desgaste" value=<%= transfer.desgaste %>>
     <input type="submit" value="enviar">
   </form>
 
