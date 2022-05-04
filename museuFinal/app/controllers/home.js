@@ -12,7 +12,7 @@ module.exports.homeListar = function (app, req, res) {
             });
             res.send("Problemas com a conexão!!! " + error.message);
         } else {
-            res.render('home.ejs', { obrasdearte: result });
+            res.render('home.ejs', { ativo: result });
         }
     });
 }

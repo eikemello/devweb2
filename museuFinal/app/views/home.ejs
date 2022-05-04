@@ -30,47 +30,17 @@
     <%- include('header.ejs'); %>
   </header>
   <div>
-    <div class="center-title">
-      <h4>Museu Menu</h4>
-    </div>
-    <div class="container">
-      <!-- <div class="center">
-        <form action="/ativo/inserir" method="post"><button type="submit">Registrar ativo</button></form>
-      </div> -->
-      <div class="center">
-        <form action="/ativo/atualizar" method="get">
-          <input type="number" name="id" placeholder="ID" required>
-          <button type="submit" value="enviar">Atualizar ativo</button>
-        </form>
-      </div>
-      <div class="center">
-        <form action="/ativo/remover" method="get">
-          <input type="number" name="id" placeholder="ID" required>
-          <button type="submit" value="enviar">Deletar ativo</button>
-        </form>
-      </div>
-      <div class="center">
-        <form action="/ativo/pesquisar" method="get">
-          <input type="number" name="id" placeholder="ID" required>
-          <button type="submit" value="enviar">Pesquisar ativo</button>
-        </form>
-
-      </div>
-      <div class="center">
-        <form action="/ativo/listar" method="get"><button type="submit">Listar tudo</button></form>
-      </div>
-    </div>
-    <% if (obrasdearte !=0 ) { %>
+    <% if (ativo !=0 ) { %>
     <h2 class="center-title">Ativos registrados</h2>
-    <% for(let i=0; i<obrasdearte.length; i++) { %>
+    <% for(let i=0; i<ativo.length; i++) { %>
     <div class="container">
       <div class="row">
         <div class="col-sm">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"> <%= obrasdearte[i].tipo %> <%= obrasdearte[i].marca %></h5>
-              <p class="card-text"><%= obrasdearte[i].modelo %>, SN: <%= obrasdearte[i].serial_number %></p>
-              <p class="card-text">ID <%= obrasdearte[i].id_ativo %></p>
+              <h5 class="card-title"> <%= ativo[i].tipo %> <%= ativo[i].marca %></h5>
+              <p class="card-text">Modelo: <%= ativo[i].modelo %>, SN: <%= ativo[i].serial_number %></p>
+              <p class="card-text">ID <%= ativo[i].id_ativo %></p>
             </div>
           </div>
         </div>

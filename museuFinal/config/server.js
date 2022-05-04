@@ -12,7 +12,7 @@ consign().include('./app/routes').then('config/dbServer.js').into(app);
 
 
 app.listen(port, function() {
-    console.log('Servidor rodando com Express na porta ', port);
+    console.log('Server on port ', port);
 });
 
 module.exports = app;
