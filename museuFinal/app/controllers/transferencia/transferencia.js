@@ -9,7 +9,7 @@ module.exports = {
         console.log("[salvarTransferenciaController]")
         let ativo = req.body;
         let connection = app.config.dbServer();
-        console.log("[controller salvartransferencia obra > ", ativo);
+        console.log("[controller salvartransferencia > ", ativo);
         ativo = {
             tipo: ativo.tipo,
             marca: ativo.marca,
@@ -18,9 +18,9 @@ module.exports = {
             disponibilidade: "Disponível",//se esta cadastrando o primeiro responsável é sempre o estoque
             desgaste: ativo.desgaste
         }
-        setObrasDeArte(ativo, connection, function (error, result) {
+        /* setAtivo(ativo, connection, function (error, result) {
             res.redirect('/');
-        });
+        }); */
     },
     pesquisarTransferenciaController: function (app, req, res) {
         console.log("[pesquisarTransferenciaController]")
@@ -57,16 +57,16 @@ module.exports = {
         console.log("[atualizarTransferenciaController]")
             /* var q = url.parse(req.url, true);
             let connection = app.config.dbServer();
-            obra = {
+            ativo = {
                 id_ativo: q.query['id'],
             } */
             res.render('../views/transferencia/atualizar.ejs', { errors: null });
-            /* getObra(obra, connection, function (error, result) {
+            /* getAtivo(ativo, connection, function (error, result) {
                 if(result != 0 & error == null){
-                    res.render('obra.ejs', {obra: result});
+                    res.render('ativo.ejs', {ativo: result});
                 } else {
                     const strResult = JSON.stringify(result);
-                    res.render('error.ejs', {error: 'ID de pesquisa '+obra.id+' não encontado! ', result: strResult});                    
+                    res.render('error.ejs', {error: 'ID de pesquisa '+ativo.id_ativo+' não encontado! ', result: strResult});                    
                 }
             }); */
     },

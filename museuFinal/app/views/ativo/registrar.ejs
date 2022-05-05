@@ -22,11 +22,11 @@
     <% } %>
   </section>
   <form action="/ativo/salvar" method="post">
-    <input type="text" name="tipo" placeholder="tipo">
-    <input type="text" name="marca" placeholder="marca">
-    <input type="text" name="modelo" placeholder="modelo">
-    <input type="text" name="serial_number" placeholder="serial number">
-    <input type="text" name="desgaste" placeholder="desgaste">
+    <input type="text" name="tipo" maxlength="40" required placeholder="tipo">
+    <input type="text" name="marca" maxlength="30" required placeholder="marca">
+    <input type="text" name="modelo" maxlength="20" required placeholder="modelo">
+    <input type="text" name="serial_number" required placeholder="serial number">
+    <input type="text" name="desgaste" maxlength="20" required placeholder="desgaste">
     <input type="submit" value="enviar">
   </form>
 

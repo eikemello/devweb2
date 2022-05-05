@@ -1,3 +1,4 @@
+const { setAtivo } = require('../../models/home')
 var url = require("url");
 
 
@@ -10,17 +11,22 @@ module.exports = {
         console.log("[registrarAtivoController]");
         let ativo = req.body;
         let connection = app.config.dbServer();
-        console.log("[controller salvarAtivo obra > ", ativo);
+        console.log("[controller salvarAtivo > ", ativo);
         ativo = {
             tipo: ativo.tipo,
             marca: ativo.marca,
             modelo: ativo.modelo,
             serial_number: ativo.serial_number,
-            disponibilidade: "Disponível",//se esta cadastrando o primeiro responsável é sempre o estoque
+            disponibilidade: "Disponível",//se esta cadastrando o primeiro responsável é sempre o estoque, então, disponível.
             desgaste: ativo.desgaste
         }
-        setObrasDeArte(ativo, connection, function (error, result) {
-            res.redirect('/');
+        setAtivo(ativo, connection, function (error, result) {
+            if(error){
+                res.redirect('../../views/error.ejs', {error: error});
+            } else{
+                res.redirect('/');
+            }
+
         });
     },
     pesquisarAtivoController: function (app, req, res) {
@@ -42,20 +48,20 @@ module.exports = {
     },
     atualizarAtivoController: function (app, req, res) {
         console.log("[atualizarAtivoController]");
-            /* var q = url.parse(req.url, true);
-            let connection = app.config.dbServer();
-            obra = {
-                id_ativo: q.query['id'],
-            } */
-            console.log("[controller atualizarAtivo] > ");
-            res.render('../views/ativo/atualizar.ejs', { errors: null });
-            /* getObra(obra, connection, function (error, result) {
-                if(result != 0 & error == null){
-                    res.render('obra.ejs', {obra: result});
-                } else {
-                    const strResult = JSON.stringify(result);
-                    res.render('error.ejs', {error: 'ID de pesquisa '+obra.id+' não encontado! ', result: strResult});                    
-                }
-            }); */
+        /* var q = url.parse(req.url, true);
+        let connection = app.config.dbServer();
+        ativo = {
+            id_ativo: q.query['id'],
+        } */
+        console.log("[controller atualizarAtivo] > ");
+        res.render('../views/ativo/atualizar.ejs', { errors: null });
+        /* getAtivo(ativo, connection, function (error, result) {
+            if(result != 0 & error == null){
+                res.render('autalizar.ejs', {ativo: result});
+            } else {
+                const strResult = JSON.stringify(result);
+                res.render('error.ejs', {error: 'ID de pesquisa '+ativo.id_ativo+' não encontado! ', result: strResult});                    
+            }
+        }); */
     },
 } 

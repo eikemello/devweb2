@@ -1,4 +1,4 @@
-const { getObrasDeArte } = require('../../models/home');
+const { getAtivo: getObrasDeArte } = require('../../models/home');
 const logger = require('../../../config/logger');
 
 module.exports.homeListar = function (app, req, res) {
