@@ -21,15 +21,64 @@
     </ul>
     <% } %>
   </section>
-  <form action="/ativo/salvar" method="post">
+<!--   <form action="/ativo/salvar" method="post">
     <input type="text" name="tipo" maxlength="40" required placeholder="tipo">
     <input type="text" name="marca" maxlength="30" required placeholder="marca">
     <input type="text" name="modelo" maxlength="20" required placeholder="modelo">
     <input type="text" name="serial_number" required placeholder="serial number">
     <input type="text" name="desgaste" maxlength="20" required placeholder="desgaste">
     <input type="submit" value="enviar">
-  </form>
+  </form> -->
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <h3>Registrar Ativo</h3>
+  </div>
+  <div class="d-flex justify-content-center">
+    <img src="https://cdn-icons-png.flaticon.com/512/2271/2271068.png" alt="" width="250" height="250">
+  </div>
+  <div class="d-flex justify-content-center p-2" style="margin-top: 20px;">
+    <form action="/ativo/salvar" method="post">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="desgaste">Desgaste</label>
+          <input type="text" class="form-control" id="desgaste" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="serial_number">Serial Number</label>
+          <input type="text" class="form-control" id="serial_number" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="patrimonio">Patrimonio</label>
+          <input type="text" class="form-control" id="patrimonio" required>
+        </div>
+      </div>
 
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="tipo">Tipo</label>
+          <select id="tipo" class="form-control">
+            <option selected>Slecione</option>
+            <option value="1">Carregador de notebook</option>
+            <option value="1">Fonte de monitor</option>
+            <option value="1">Monitor</option>
+            <option value="1">Mouse</option>
+            <option value="1">Notebook</option>
+            <option value="2">Teclado</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="marca">Marca</label>
+          <input type="text" class="form-control" id="marca" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="modelo">Modelo</label>
+          <input type="text" class="form-control" id="modelo" required>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Registrar</button>
+      </div>
+    </form>
+  </div>
 </body>
 
 </html>
