@@ -13,14 +13,45 @@
   <header>
     <%- include('../header.ejs'); %>
   </header>
-  <form action="/ativo/salvar" method="post" class="center">
-    <input type="text" name="tipo" placeholder="tipo">
-    <input type="text" name="marca" placeholder="marca">
-    <input type="text" name="modelo" placeholder="modelo">
-    <input type="text" name="desgaste" placeholder="desgaste">
-    <input type="text" name="disponilidade" placeholder="disponilidade">
-    <input type="submit" value="Atualizar">
-  </form>
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <form action="/ativo/salvar" method="post">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="serial_number">Serial Number</label>
+          <input type="text" class="form-control" id="serial_number" required>
+        </div>
+        <button type="submit" value="enviar" class="btn" style="background-color: lightblue; height:  fit-content; margin-left: 10px; margin-top: 30px;">Pesquisar</button>
+      </div>
+      <h4 style="margin-top: 50px;">Dados do ativo pesquisado</h4>
+        <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <input type="text" class="form-control" id="tipo" required>
+        </div>
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input type="text" class="form-control" id="marca" required>
+        </div>
+        <div class="form-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" class="form-control" id="modelo" required>
+        </div>
+        <div class="form-group">
+          <label for="responsavel">Responsável</label>
+          <input type="text" class="form-control" id="responsavel" required>
+        </div>
+        <div class="form-group">
+          <label for="desgaste">Desgaste</label>
+          <input type="text" class="form-control" id="desgaste" required>
+        </div>
+        <div class="form-group">
+          <label for="registrado_em">Registrado em</label>
+          <input type="text" class="form-control" id="registrado_em" required>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Atualizar</button>
+        </div>
+    </form>
+  </div>
 </body>
 
 </html>
