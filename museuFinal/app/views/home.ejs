@@ -15,6 +15,7 @@
       margin-top: 20px;
     }
   </style>
+
 </head>
 
 <body>
@@ -23,32 +24,81 @@
   </header>
   <div>
     <% if (ativo !=0 ) { %>
-    <h2 class="center-title">Ativos registrados</h2>
-    <% for(let i=0; i<ativo.length; i++) { %>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"> <%= ativo[i].tipo %> <%= ativo[i].marca %></h5>
-              <p class="card-text">Modelo: <%= ativo[i].modelo %>, SN: <%= ativo[i].serial_number %></p>
-              <p class="card-text">ID <%= ativo[i].id_ativo %></p>
-            </div>
-          </div>
-        </div>
+      <div class="table-responsive-md" style="padding: 20px;">
+        <table class="table">
+          <h4 class="text-center">Ativos Registrados</h4>
+        <caption>Ativos totais: <%= ativo.length%></caption>
+        <thead>
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Modelo</th>
+            <th class="text-center">Marca</th>
+            <th class="text-center">Serial Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% ativo.forEach(function(ativos){ %>
+            <tr>
+              <td class="text-center"><%= ativos.id_ativo%></td>
+              <td class="text-center"><%= ativos.tipo%></td>
+              <td class="text-center"><%= ativos.modelo%></td>
+              <td class="text-center"><%= ativos.marca %></td>
+              <td class="text-center"><%= ativos.serial_number%></td>
+            </tr>
+            <% })%>
+        </tbody>
+      </table>
       </div>
-    </div>
-    <%}} else {%>
+    <%} else {%>
     <div class="card-columns">
       <div class="card">
         <div class="card-body">
-          <h4>Banco de dados vazio!</h4>
+          <h4>Nenhum ativo registrado!</h4>
         </div>
       </div>
     </div>
     <%}%>
-
+    <% if (ativo !=0 ) { %>
+      <div class="table-responsive-md" style="padding: 20px;">
+        <table class="table">
+          <h4 class="text-center">Empréstimos</h4>
+        <caption>Ativos totais: <%= ativo.length%></caption>
+        <thead>
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Modelo</th>
+            <th class="text-center">Marca</th>
+            <th class="text-center">Serial Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% ativo.forEach(function(ativos){ %>
+            <tr>
+              <td class="text-center"><%= ativos.id_ativo%></td>
+              <td class="text-center"><%= ativos.tipo%></td>
+              <td class="text-center"><%= ativos.modelo%></td>
+              <td class="text-center"><%= ativos.marca %></td>
+              <td class="text-center"><%= ativos.serial_number%></td>
+            </tr>
+            <% })%>
+        </tbody>
+      </table>
+      </div>
+    <%} else {%>
+    <div class="card-columns">
+      <div class="card">
+        <div class="card-body">
+          <h4>Nenhum empréstimo registrado!</h4>
+        </div>
+      </div>
+    </div>
+    <%}%>
   </div>
-</body>
+  <script>
 
+  </script>
+
+</body>
 </html>
