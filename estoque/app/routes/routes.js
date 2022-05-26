@@ -9,7 +9,6 @@ const { registrarTransferenciaController, salvarTransferenciaController,
     removerTransferenciaController } = require('../controllers/transferencia/transferencia');
 
 /* const { listarAtivos } = require('../models/obra'); */
-
 module.exports = {
     homeRoute: function (app) {
         app.get('/', function (req, res) {

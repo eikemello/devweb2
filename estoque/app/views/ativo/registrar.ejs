@@ -21,14 +21,6 @@
     </ul>
     <% } %>
   </section>
-<!--   <form action="/ativo/salvar" method="post">
-    <input type="text" name="tipo" maxlength="40" required placeholder="tipo">
-    <input type="text" name="marca" maxlength="30" required placeholder="marca">
-    <input type="text" name="modelo" maxlength="20" required placeholder="modelo">
-    <input type="text" name="serial_number" required placeholder="serial number">
-    <input type="text" name="desgaste" maxlength="20" required placeholder="desgaste">
-    <input type="submit" value="enviar">
-  </form> -->
   <div class="d-flex justify-content-center" style="margin-top: 20px;">
     <h3>Registrar Ativo</h3>
   </div>
@@ -39,39 +31,45 @@
     <form action="/ativo/salvar" method="post">
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="desgaste">Desgaste</label>
-          <input type="text" class="form-control" id="desgaste" required>
+          <label>Desgaste</label>
+          <select name="desgaste" class="form-control">
+            <option selected>Selecione</option>
+            <option value="Novo">Novo</option>
+            <option value="Semi-novo">Semi-novo</option>
+            <option value="Usado">Usado</option>
+            <option value="Marcas de uso">Marcas de uso</option>
+          </select>
         </div>
         <div class="form-group col-md-4">
-          <label for="serial_number">Serial Number</label>
-          <input type="text" class="form-control" id="serial_number" required>
+          <label>Serial Number</label>
+          <input type="text" class="form-control" name="serial_number" required>
         </div>
         <div class="form-group col-md-4">
-          <label for="patrimonio">Patrimonio</label>
-          <input type="text" class="form-control" id="patrimonio" required>
+          <label>Patrimonio</label>
+          <input type="text" class="form-control" name="patrimonio" required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="tipo">Tipo</label>
-          <select id="tipo" class="form-control">
-            <option selected>Slecione</option>
-            <option value="1">Carregador de notebook</option>
-            <option value="1">Fonte de monitor</option>
-            <option value="1">Monitor</option>
-            <option value="1">Mouse</option>
-            <option value="1">Notebook</option>
-            <option value="2">Teclado</option>
+          <label>Tipo</label>
+          <select name="tipo" class="form-control">
+            <option selected>Selecione</option>
+            <option value="Carregador de notebook">Carregador de notebook</option>
+            <option value="Fonte de monitor">Fonte de monitor</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Notebook">Notebook</option>
+            <option value="Teclado">Teclado</option>
           </select>
         </div>
         <div class="form-group col-md-4">
-          <label for="marca">Marca</label>
-          <input type="text" class="form-control" id="marca" required>
+          <label>Marca</label>
+          <input type="text" class="form-control" name="marca" required>
         </div>
         <div class="form-group col-md-4">
-          <label for="modelo">Modelo</label>
-          <input type="text" class="form-control" id="modelo" required>
+          <label>Modelo</label>
+          <input type="text" class="form-control" name="modelo" required>
         </div>
       </div>
       <div class="d-flex justify-content-center">

@@ -1,14 +1,13 @@
 const { setAtivo } = require('../../models/home')
 var url = require("url");
 
-
 module.exports = {
     registrarAtivoController: function (app, req, res) {
         console.log("[registrarAtivoController]");
         res.render('../views/ativo/registrar.ejs', { errors: null });
     },
     salvarAtivoController: function (app, req, res) {
-        console.log("[registrarAtivoController]");
+        console.log("[salvarAtivoController]");
         let ativo = req.body;
         let connection = app.config.dbServer();
         console.log("[controller salvarAtivo > ", ativo);
