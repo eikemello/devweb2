@@ -1,5 +1,5 @@
 const { setAtivo } = require('../../models/home')
-var url = require("url");
+const Joi = require('joi');
 
 module.exports = {
     registrarAtivoController: function (app, req, res) {
@@ -7,22 +7,23 @@ module.exports = {
         res.render('../views/ativo/registrar.ejs', { errors: null });
     },
     salvarAtivoController: function (app, req, res) {
-        console.log("[salvarAtivoController]");
-        let ativo = req.body;
-        let connection = app.config.dbServer();
-        console.log("[controller salvarAtivo > ", ativo);
+        const result_validate = validateData(req.body);
+        if (result_validate.error)
+            return res.render('error.ejs', { error: 'Erro ao registrar ativo: ' + result_validate.error.details[0].message });
+
+        console.log("[controller salvarAtivo > ", req.body);
         ativo = {
-            tipo: ativo.tipo,
-            marca: ativo.marca,
-            modelo: ativo.modelo,
-            serial_number: ativo.serial_number,
+            tipo: req.body.tipo,
+            marca: req.body.marca,
+            modelo: req.body.modelo,
+            serial_number: req.body.serial_number,
             disponibilidade: "Disponível",//se esta cadastrando o primeiro responsável é sempre o estoque, então, disponível.
-            desgaste: ativo.desgaste
+            desgaste: req.body.desgaste
         }
-        setAtivo(ativo, connection, function (error, result) {
-            if(error){
-                res.redirect('../../views/error.ejs', {error: error});
-            } else{
+        setAtivo(ativo, app.config.dbServer(), function (error, result) {
+            if (error) {
+                res.redirect('../../views/error.ejs', { error: error });
+            } else {
                 res.redirect('/');
             }
 
@@ -63,4 +64,15 @@ module.exports = {
             }
         }); */
     },
-} 
+}
+
+const validateData = (data) => {
+    const schema = Joi.object({
+        tipo: Joi.string().min(1).max(50).required(),
+        marca: Joi.string().min(1).max(25).required(),
+        modelo: Joi.string().min(1).max(30).required(),
+        serial_number: Joi.string().min(1).max(50).required(),
+        desgaste: Joi.string().min(1).max(20).alphanum().required(),
+    });
+    return schema.validate(data);
+}

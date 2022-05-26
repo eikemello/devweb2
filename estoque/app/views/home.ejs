@@ -23,10 +23,10 @@
     <%- include('header.ejs'); %>
   </header>
   <div>
-    <% if (ativo !=0 ) { %>
-      <div class="table-responsive-md" style="padding: 20px;">
-        <table class="table">
-          <h4 class="text-center">Ativos Registrados</h4>
+    <% if ( ativo != 0 ) { %>
+    <div class="table-responsive-md" style="padding: 20px;">
+      <table class="table">
+        <h4 class="text-center">Ativos Registrados</h4>
         <caption>Ativos totais: <%= ativo.length%></caption>
         <thead>
           <tr>
@@ -39,17 +39,17 @@
         </thead>
         <tbody>
           <% ativo.forEach(function(ativos){ %>
-            <tr>
-              <td class="text-center"><%= ativos.id_ativo%></td>
-              <td class="text-center"><%= ativos.tipo%></td>
-              <td class="text-center"><%= ativos.modelo%></td>
-              <td class="text-center"><%= ativos.marca %></td>
-              <td class="text-center"><%= ativos.serial_number%></td>
-            </tr>
-            <% })%>
+          <tr>
+            <td class="text-center"><%= ativos.id_ativo%></td>
+            <td class="text-center"><%= ativos.tipo%></td>
+            <td class="text-center"><%= ativos.modelo%></td>
+            <td class="text-center"><%= ativos.marca %></td>
+            <td class="text-center"><%= ativos.serial_number%></td>
+          </tr>
+          <% })%>
         </tbody>
       </table>
-      </div>
+    </div>
     <%} else {%>
     <div class="card-columns">
       <div class="card">
@@ -58,34 +58,31 @@
         </div>
       </div>
     </div>
-    <%}%>
-    <% if (ativo !=0 ) { %>
-      <div class="table-responsive-md" style="padding: 20px;">
-        <table class="table">
-          <h4 class="text-center">Empréstimos</h4>
-        <caption>Ativos totais: <%= ativo.length%></caption>
+    <%} if ( emprestimo != 0 ) {%>
+    <div class="table-responsive-md" style="padding: 20px;">
+      <table class="table">
+        <h4 class="text-center">Empréstimos</h4>
+        <caption>Empréstimos totais: <%= emprestimo.length%></caption>
         <thead>
           <tr>
-            <th class="text-center">Id</th>
             <th class="text-center">Tipo</th>
             <th class="text-center">Modelo</th>
-            <th class="text-center">Marca</th>
             <th class="text-center">Serial Number</th>
+            <th class="text-center">Funcionario</th>
           </tr>
         </thead>
         <tbody>
-          <% ativo.forEach(function(ativos){ %>
-            <tr>
-              <td class="text-center"><%= ativos.id_ativo%></td>
-              <td class="text-center"><%= ativos.tipo%></td>
-              <td class="text-center"><%= ativos.modelo%></td>
-              <td class="text-center"><%= ativos.marca %></td>
-              <td class="text-center"><%= ativos.serial_number%></td>
-            </tr>
-            <% })%>
+          <% emprestimo.forEach(function(emprestimos){ %>
+          <tr>
+            <td class="text-center"><%= emprestimos.tipo%></td>
+            <td class="text-center"><%= emprestimos.modelo%></td>
+            <td class="text-center"><%= emprestimos.serial_number%></td>
+            <td class="text-center"><%= emprestimos.nome %></td>
+          </tr>
+          <% })%>
         </tbody>
       </table>
-      </div>
+    </div>
     <%} else {%>
     <div class="card-columns">
       <div class="card">
@@ -96,9 +93,5 @@
     </div>
     <%}%>
   </div>
-  <script>
-
-  </script>
-
 </body>
 </html>
