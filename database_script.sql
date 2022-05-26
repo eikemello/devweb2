@@ -90,3 +90,11 @@ INSERT INTO transferencia (id_ativo, id_novo_responsavel, id_antigo_responsavel)
 																						(7, 5, 6);
 SELECT * FROM transferencia;
 
+CREATE TABLE usuarios ( 
+idusuario INT NOT NULL AUTO_INCREMENT,
+nome VARCHAR (45) NOT NULL,
+username VARCHAR(20) NOT NULL,
+password_user VARCHAR(32) NOT NULL, 
+registrado_em TIMESTAMP,   
+PRIMARY KEY (`idusuario`)
+); 
