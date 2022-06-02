@@ -41,7 +41,7 @@ CREATE TABLE ativo (
     serial_number VARCHAR(20) NOT NULL,
     registrado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     disponibilidade VARCHAR(20),
-    desgaste VARCHAR(20),
+    desgaste VARCHAR(30),
     PRIMARY KEY (`id_ativo`)
 );
 INSERT INTO ativo (tipo, marca, modelo, serial_number, disponibilidade, desgaste) VALUES ('Monitor', 'LG', 'Ultrawide 29pol', 'HKL23AS', 'Disponível', 'Novo'),
@@ -61,6 +61,18 @@ CREATE TABLE ativo_emprestado (
     FOREIGN KEY (id_ativo) REFERENCES ativo (id_ativo),
     FOREIGN KEY (id_funcionario) REFERENCES funcionario (id_funcionario)
 );
+
+SELECT
+    P.tipo,
+    P.modelo,
+    P.serial_number,
+    C.nome 
+FROM
+    ativo P
+INNER JOIN
+  funcionario C
+ON P.id_ativo = C.id_funcionario;
+
 INSERT INTO ativo_emprestado (id_funcionario, id_ativo) VALUES (1, 5),
 															(2, 4),
 															(7, 3),
