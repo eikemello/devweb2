@@ -9,21 +9,23 @@
   <title>Estoque</title>
 </head>
 
-<body style="margin: 10px">
-  <header>
-    <%- include('header.ejs'); %>
-  </header>
-  <div class="container">
+<body>
+  <div>
+    <header>
+      <%- include('header.ejs'); %>
+    </header>
+  </div>
+  <div class="container" style="max-width: inherit;">
     <div class="row">
       <div class="col-sm">
         <% if ( ativo != 0 ) { %>
-        <div class="table-responsive-md table-bordered" style="padding: 10px;">
+        <div class="table-responsive-sm table-bordered" style="padding: 10px;">
           <table class="table">
             <h4 class="text-center">Ativos Registrados</h4>
             <caption>Ativos totais: <%= ativo.length%></caption>
             <thead>
               <tr>
-                <th class="text-center">Id</th>
+                <!-- <th class="text-center">Id</th> -->
                 <th class="text-center">Tipo</th>
                 <th class="text-center">Modelo</th>
                 <th class="text-center">Marca</th>
@@ -33,7 +35,7 @@
             <tbody>
               <% ativo.forEach(function(ativos){ %>
               <tr>
-                <td class="text-center"><%= ativos.id_ativo%></td>
+                <!-- <td class="text-center"><%= ativos.id_ativo%></td> -->
                 <td class="text-center"><%= ativos.tipo%></td>
                 <td class="text-center"><%= ativos.modelo%></td>
                 <td class="text-center"><%= ativos.marca %></td>
@@ -55,7 +57,7 @@
       </div>
       <div class="col-sm">
         <%if ( emprestimo != 0 ) {%>
-        <div class="table-responsive-md table-bordered" style="padding: 10px;">
+        <div class="table-responsive-sm table-bordered" style="padding: 10px;">
           <table class="table">
             <h4 class="text-center">Empréstimos</h4>
             <caption>Empréstimos totais: <%= emprestimo.length%></caption>
@@ -84,6 +86,42 @@
           <div class="card">
             <div class="card-body">
               <h4>Nenhum empréstimo registrado!</h4>
+            </div>
+          </div>
+        </div>
+        <%}%>
+      </div>
+      <div class="col">
+        <%if ( transferencia != 0 ) {%>
+        <div class="table-responsive-sm table-bordered" style="padding: 10px;">
+          <table class="table">
+            <h4 class="text-center">Transferências</h4>
+            <caption>Transferências totais: <%= transferencia.length%></caption>
+            <thead>
+              <tr>
+                <th class="text-center">Serial Number</th>
+                <th class="text-center">Atual</th>
+                <th class="text-center">Anterior</th>
+                <th class="text-center">Transferido em</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% transferencia.forEach(function(transferencias){ %>
+              <tr>
+                <td class="text-center"><%= transferencias.serial_number%></td>
+                <td class="text-center"><%= transferencias.nome %></td>
+                <td class="text-center"><%= transferencias.id_antigo_responsavel %></td>
+                <td class="text-center"><%= transferencias.transferido_em %></td>
+              </tr>
+              <% })%>
+            </tbody>
+          </table>
+        </div>
+        <%} else {%>
+        <div class="card-columns">
+          <div class="card">
+            <div class="card-body">
+              <h4>Nenhuma transferência registrada!</h4>
             </div>
           </div>
         </div>
