@@ -110,3 +110,5 @@ password_user VARCHAR(32) NOT NULL,
 registrado_em TIMESTAMP,   
 PRIMARY KEY (`idusuario`)
 ); 
+
+delete from estoque.ativo where tipo = 'undefined';

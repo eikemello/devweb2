@@ -3,7 +3,7 @@ var url = require("url");
 module.exports = {
     registrarTransferenciaController: function (app, req, res) {
         console.log("[registrarTransferenciaController]")
-        res.render('../views/ativo/registrar.ejs', { errors: null, transfer: { tipo: '', marca: '', modelo: '', desgaste: '' } });
+        res.render('../views/transferencia/registrar.ejs', { errors: null, transfer: { tipo: '', marca: '', modelo: '', desgaste: '' } });
     },
     salvarTransferenciaController: function (app, req, res) {
         console.log("[salvarTransferenciaController]")

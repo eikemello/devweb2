@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Registrar Transferência</title>
+  <title>Registrar Ativo</title>
 </head>
 
 <body>
@@ -21,16 +21,35 @@
     </ul>
     <% } %>
   </section>
-  <form action="/transferencia/salvar" method="post">
-    <input type="text" name="tipo" placeholder="antigo responsável" value=<%= transfer.tipo %>>
-    <input type="text" name="marca" placeholder="atual responsável" value=<%= transfer.marca %>>
-    <input type="text" name="tipo" placeholder="tipo" value=<%= transfer.tipo %>>
-    <input type="text" name="marca" placeholder="marca" value=<%= transfer.marca %>>
-    <input type="text" name="modelo" placeholder="modelo" value=<%= transfer.modelo %>>
-    <input type="text" name="desgaste" placeholder="desgaste" value=<%= transfer.desgaste %>>
-    <input type="submit" value="enviar">
-  </form>
-
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <h3>Registrar Transferência</h3>
+  </div>
+  <div class="d-flex justify-content-center">
+    <img src="https://cdn-icons-png.flaticon.com/512/179/179971.png" alt="" width="250" height="250">
+  </div>
+  <div class="d-flex justify-content-center p-1" style="margin-top: 20px;">
+    <form action="/transferencia/salvar" method="post">
+        <label>Desgaste</label>
+        <select name="desgaste" class="form-control">
+          <option selected>Selecione</option>
+          <option value="Novo">Novo</option>
+          <option value="Semi-novo">Semi-novo</option>
+          <option value="Usado">Usado</option>
+          <option value="Marcas de uso">Marcas de uso</option>
+        </select>
+        <div class="form-group" style="width: 350px;">
+        <label >Serial Number</label>
+        <input type="text" class="form-control" name="serial_number" required>
+        <label>Responsável atual</label>
+        <input type="text" class="form-control" name="marca" required>
+        <label>Novo responsável</label>
+        <input type="text" class="form-control" name="modelo" required>
+        <div class="d-flex justify-content-center" style="margin-top: 20px;">
+          <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Transferir</button>
+        </div>
+        </div>
+    </form>
+  </div>
 </body>
 
 </html>

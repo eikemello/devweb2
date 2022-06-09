@@ -5,23 +5,41 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atualizar Transferência</title>
+  <link rel="stylesheet" href="style.css">
+  <title>Atualizar transferência</title>
 </head>
 
 <body>
   <header>
     <%- include('../header.ejs'); %>
   </header>
-  <h2>Atualizar Transferência</h2>
-  <form action="/transferencia/salvar" method="post">
-    <h2>ID: </h2>
-    <input type="text" name="tipo">
-    <input type="text" name="marca">
-    <input type="text" name="modelo">
-    <input type="text" name="desgaste">
-    <input type="text" name="disponilidade">
-    <input type="submit" value="Atualizar">
-  </form>
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <form action="/transferencia/atualizar" method="post">
+      <div class="form-row d-flex justify-content-center"> 
+        <div class="form-group " style="width: 350px;">
+          <label for="serial_number">Serial Number</label>
+          <input type="text" class="form-control" id="serial_number" required>
+        </div>
+        <button type="submit" value="enviar" class="btn" style="background-color: lightblue; height:  fit-content; margin-left: 10px; margin-top: 30px;">Pesquisar</button>
+      </div>
+      <h4 style="margin-top: 50px;">Dados da última transferência</h4>
+      <div class="form-group" style="width: 350px;">
+          <label for="marca">Responsável atual</label>
+          <input type="text" class="form-control" id="marca" required>
+          <label for="modelo">Responsável anterior</label>
+          <input type="text" class="form-control" id="modelo" required>
+          <label for="responsavel">Serial number</label>
+          <input type="text" class="form-control" id="responsavel" required>
+          <label for="desgaste">Data da transferência</label>
+          <input type="text" class="form-control" id="desgaste" required>
+          <label for="registrado_em">Estado do ativo na transferência</label>
+          <input type="text" class="form-control" id="registrado_em" required>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Atualizar</button>
+        </div>
+    </form>
+  </div>
 </body>
 
 </html>
