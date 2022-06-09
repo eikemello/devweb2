@@ -10,19 +10,17 @@
 </head>
 
 <body>
-  <div>
     <header>
       <%- include('header.ejs'); %>
     </header>
-  </div>
   <div class="container" style="max-width: inherit;">
     <div class="row">
       <div class="col-sm">
         <% if ( ativo != 0 ) { %>
-        <div class="table-responsive-sm table-bordered" style="padding: 10px;">
-          <table class="table">
-            <h4 class="text-center">Ativos Registrados</h4>
-            <caption>Ativos totais: <%= ativo.length%></caption>
+        <h4 class="text-center">Ativos Registrados</h4>
+        <caption>Ativos totais: <%= ativo.length%></caption>
+        <div class="table-responsive-sm">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <!-- <th class="text-center">Id</th> -->
@@ -57,10 +55,10 @@
       </div>
       <div class="col-sm">
         <%if ( emprestimo != 0 ) {%>
-        <div class="table-responsive-sm table-bordered" style="padding: 10px;">
-          <table class="table">
-            <h4 class="text-center">Empréstimos</h4>
-            <caption>Empréstimos totais: <%= emprestimo.length%></caption>
+        <h4 class="text-center">Empréstimos</h4>
+        <caption>Empréstimos totais: <%= emprestimo.length%></caption>
+        <div class="table-responsive-sm">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th class="text-center">Tipo</th>
@@ -93,10 +91,10 @@
       </div>
       <div class="col">
         <%if ( transferencia != 0 ) {%>
-        <div class="table-responsive-sm table-bordered" style="padding: 10px;">
-          <table class="table">
-            <h4 class="text-center">Transferências</h4>
-            <caption>Transferências totais: <%= transferencia.length%></caption>
+        <h4 class="text-center">Transferências</h4>
+        <caption>Transferências totais: <%= transferencia.length%></caption>
+        <div class="table-responsive-sm ">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th class="text-center">Serial Number</th>
@@ -128,7 +126,7 @@
         <%}%>
       </div>
     </div>
-    <h1>canvas aqui</h1>
+    <h1>graph</h1>
   </div>
 </body>
 </html>
