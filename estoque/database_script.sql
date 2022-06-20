@@ -27,10 +27,10 @@ CREATE TABLE funcionario (
  INSERT INTO funcionario (nome, id_cargo) VALUES ('Eike Mello', 1),
 												('Alberto Alves', 2),
 												('Lucia Helena', 1),
-												('Maria Luiz Oliveira',4),
+												('Maria Luiza Oliveira',4),
 												('Leonardo Trindade', 5),
-												('Marilia Mello', 2),
-												('João Pedro', 3);
+												('Marilia Cavalcante', 2),
+												('João Pedro Martines', 3);
 SELECT * FROM funcionario;
 
 CREATE TABLE ativo (
@@ -93,6 +93,11 @@ CREATE TABLE transferencia (
     FOREIGN KEY (id_novo_responsavel) REFERENCES funcionario (id_funcionario),
     FOREIGN KEY (id_antigo_responsavel) REFERENCES funcionario (id_funcionario)
 );
+
+SELECT T.id_transfererencia, T.id_novo_responsavel,  T.id_antigo_responsavel, F.nome, A.tipo, A.serial_number, T.transferido_em 
+FROM ativo A INNER JOIN transferencia T ON T.id_ativo = A.id_ativo JOIN funcionario F ON T.id_novo_responsavel = F.id_funcionario;
+
+
 INSERT INTO transferencia (id_ativo, id_novo_responsavel, id_antigo_responsavel) VALUES (5, 1, 5),
 																						(4, 2, 4),
 																						(3, 7, 3),
@@ -110,5 +115,3 @@ password_user VARCHAR(32) NOT NULL,
 registrado_em TIMESTAMP,   
 PRIMARY KEY (`idusuario`)
 ); 
-
-delete from estoque.ativo where tipo = 'undefined';

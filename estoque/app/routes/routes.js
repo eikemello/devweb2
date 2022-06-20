@@ -8,7 +8,6 @@ const { registrarTransferenciaController, salvarTransferenciaController,
     pesquisarTransferenciaController, atualizarTransferenciaController,
     removerTransferenciaController } = require('../controllers/transferencia/transferencia');
 
-/* const { listarAtivos } = require('../models/obra'); */
 module.exports = {
     homeRoute: function (app) {
         app.get('/', function (req, res) {
@@ -47,10 +46,30 @@ module.exports = {
         });
     },
 
-    atualizarAtivoRoute: function (app) {
+    atualizarAtivoRouteGET: function (app) {
         app.get('/ativo/atualizar', function (req, res) {
             try {
                 atualizarAtivoController(app, req, res);
+            } catch (error) {
+                res.render('error.ejs', { error: 'Erro ao carregar página de atualização de ativos: ' + error });
+            }
+        });
+    },
+
+    atualizarAtivoRoutePOST: function (app) {
+        app.get('/ativo/atualizar/salvar', function (req, res) {
+            try {
+                atualizarAtivoController(app, req, res);
+            } catch (error) {
+                res.render('error.ejs', { error: 'Erro ao carregar página de atualização de ativos: ' + error });
+            }
+        });
+    },
+
+    salvarAlteraçãoAtivoRoute: function (app) {
+        app.post('/ativo/atualizar/salvar', function (req, res) {
+            try {
+                salvarAlteraçãoAtivoController(app, req, res);
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de atualização de ativos: ' + error });
             }

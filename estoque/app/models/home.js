@@ -12,8 +12,8 @@ module.exports = {
         querysql = 'SELECT T.id_transfererencia, T.id_novo_responsavel,  T.id_antigo_responsavel, F.nome, A.tipo, A.serial_number FROM ativo A INNER JOIN transferencia T ON T.id_ativo = A.id_ativo JOIN funcionario F ON T.id_novo_responsavel = F.id_funcionario;';
         connection.query(querysql, callback);
     },
-    setAtivo: function (obra, connection, callback) {
-        querysql = `INSERT INTO estoque.ativo (tipo, marca, modelo, serial_number, disponibilidade, desgaste) VALUES ("${obra.tipo}", "${obra.marca}", "${obra.modelo}","${obra.serial_number}", "${obra.disponibilidade}", "${obra.desgaste}");`
+    setAtivo: function (ativo, connection, callback) {
+        querysql = `INSERT INTO estoque.ativo (tipo, marca, modelo, serial_number, disponibilidade, desgaste) VALUES ("${ativo.tipo}", "${ativo.marca}", "${ativo.modelo}","${ativoserial_number}", "${ativo.disponibilidade}", "${ativo.desgaste}");`
         connection.query(querysql, callback);
     }
 }

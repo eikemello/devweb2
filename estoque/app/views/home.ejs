@@ -14,10 +14,10 @@
       <%- include('header.ejs'); %>
     </header>
   <div class="container" style="max-width: inherit;">
-    <div class="row">
+    <div class="row" style="margin-top: 20px;">
       <div class="col-sm">
         <% if ( ativo != 0 ) { %>
-        <h4 class="text-center">Ativos Registrados</h4>
+        <h4 class="text-center">Ativos</h4>
         <caption>Ativos totais: <%= ativo.length%></caption>
         <div class="table-responsive-sm">
           <table class="table table-bordered">
@@ -127,6 +127,43 @@
       </div>
     </div>
     <h1>graph</h1>
+
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
   </div>
+  <script>
+    var xyValues = [
+      {x:50, y:7},
+      {x:60, y:8},
+      {x:70, y:8},
+      {x:80, y:9},
+      {x:90, y:9},
+      {x:100, y:9},
+      {x:110, y:10},
+      {x:120, y:11},
+      {x:130, y:14},
+      {x:140, y:14},
+      {x:150, y:15}
+    ];
+    
+    new Chart("myChart", {
+      type: "scatter",
+      data: {
+        datasets: [{
+          pointRadius: 4,
+          pointBackgroundColor: "rgb(0,0,255)",
+          data: xyValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          xAxes: [{ticks: {min: 40, max:160}}],
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>

@@ -7,7 +7,8 @@ routes.homeRoute(app);
 
 routes.registrarAtivoRoute(app);
 routes.salvarAtivoRoute(app);
-routes.atualizarAtivoRoute(app);
+routes.atualizarAtivoRouteGET(app);
+routes.atualizarAtivoRoutePOST(app);
 routes.pesquisarAtivoRoute(app);
 routes.removerAtivoRoute(app);
 
