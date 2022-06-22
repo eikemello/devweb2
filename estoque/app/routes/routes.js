@@ -2,7 +2,7 @@ const { homeListar } = require('../controllers/home/home');
 
 const { registrarAtivoController, salvarAtivoController, atualizarAtivoController,
     pesquisarAtivoController, salvarAtualizaçãoAtivoController,
-    removerAtivoController } = require('../controllers/ativo/ativo');
+    removerAtivoController, removerAtivoControllerPOST } = require('../controllers/ativo/ativo');
 
 const { registrarTransferenciaController, salvarTransferenciaController,
     pesquisarTransferenciaController, atualizarTransferenciaController,
@@ -46,21 +46,10 @@ module.exports = {
         });
     },
 
-    atualizarAtivoRouteGET: function (app) {
+    atualizarAtivoRoute: function (app) {
         app.get('/ativo/atualizar', function (req, res) {
             try {
                 atualizarAtivoController(app, req, res);
-            } catch (error) {
-                res.render('error.ejs', { error: 'Erro ao carregar página de atualização de ativos: ' + error });
-            }
-        });
-    },
-
-    atualizarAtivoRoutePOST: function (app) {
-        app.post('/ativo/atualizar/salvar', function (req, res) {
-            try {
-                console.log('ativo/atualizar/salvar');
-                salvarAtualizaçãoAtivoController(app, req, res);
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de atualização de ativos: ' + error });
             }
@@ -76,11 +65,19 @@ module.exports = {
             }
         });
     },
-
-    removerAtivoRoute: function (app) {
+    removerAtivoRouteGET: function (app) {
         app.get('/ativo/remover', function (req, res) {
             try {
                 removerAtivoController(app, req, res);
+            } catch (error) {
+                res.render('error.ejs', { error: 'Erro ao carregar página de remoção de ativos: ' + error });
+            }
+        });
+    },
+    removerAtivoRoutePOST: function (app) {
+        app.post('/ativo/remover/remover', function (req, res) {
+            try {
+                removerAtivoControllerPOST(app, req, res);
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de remoção de ativos: ' + error });
             }

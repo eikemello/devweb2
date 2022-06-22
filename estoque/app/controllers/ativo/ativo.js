@@ -1,5 +1,5 @@
 const { setAtivo, setAtivoUpdate } = require('../../models/home');
-const { getAtivo } = require('../../models/ativo');
+const { getAtivo, removeAtivo } = require('../../models/ativo');
 const Joi = require('joi');
 
 module.exports = {
@@ -32,37 +32,59 @@ module.exports = {
     },
     pesquisarAtivoController: function (app, req, res) {
         console.log("[pesquisarAtivoController]");
-        res.render('../views/ativo/pesquisar.ejs', { errors: null, ativo: { tipo: '', marca: '', modelo: '', desgaste: '' } });
+        res.render('../views/ativo/pesquisar.ejs', { error: null, ativo: null });
     },
     removerAtivoController: function (app, req, res) {
         console.log("[removerAtivoController]");
-        res.render('../views/ativo/remover.ejs');
-        /* setDeletarAtivo(ativo, connection, function (error, result) {
-            if(result.affectedRows > 0){
-                res.render('ativo.ejs', {ativo: ativo});
-                homeListar(app, req, res);
+        if (req.query['serial_number'] == '' || req.query['serial_number'] == null) {
+            res.render('../views/ativo/remover.ejs', { error: null, ativo: null });
+        } else {
+            const connection = app.config.dbServer();
+            ativo = { serial_number: req.query['serial_number'] };
+            getAtivo(ativo, connection, function (error, result) {
+                if (error) {
+                    res.render('../views/error.ejs', { ativo: null, error: "Erro ao pesquisar serial number: " + error });
+                } else if (result != 0 && error == null) {
+                    ativo = JSON.parse(JSON.stringify(result));
+                    ativo = {
+                        id_ativo: ativo[0].id_ativo,
+                        tipo: ativo[0].tipo,
+                        marca: ativo[0].marca,
+                        modelo: ativo[0].modelo,
+                        serial_number: ativo[0].serial_number,
+                        disponibilidade: ativo[0].disponibilidade,
+                        desgaste: ativo[0].desgaste,
+                    };
+                    res.render('../views/ativo/remover.ejs', { error: null, ativo: ativo });
+                } else {
+                    res.render('../views/ativo/remover.ejs', { ativo: null, error: 'Pesquisa pelo ativo ' + ativo.serial_number + ' não encontado!' });
+                }
+            });
+        }
+    },
+    removerAtivoControllerPOST: function (app, req, res) {
+        console.log("[removerAtivoControllerPOST]");
+        console.log(req.body);
+        removeAtivo(req.body, app.config.dbServer(), function (error, result) {
+            if (error) {
+                res.render('../views/error.ejs', { error: "Erro ao remover ativo: " + error });
             } else {
-                const strResult = JSON.stringify(result);
-                res.render('error.ejs', {error: 'Nao deletado! Provável ID inexistente. ', reuslt: strResult});                    
+                res.redirect('/');
             }
-        }); */
+        });
+        return;
     },
     atualizarAtivoController: function (app, req, res) {
         console.log("[atualizarAtivoController]");
         if (req.query['serial_number'] == '' || req.query['serial_number'] == null) {
-            console.log('serial number = null');
-            res.render('../views/ativo/atualizar.ejs', { ativo: null, error: null});
+            res.render('../views/ativo/atualizar.ejs', { ativo: null, error: null });
         } else {
             const connection = app.config.dbServer();
-            console.log('serial number != null, SN: ' + req.query['serial_number']);
-            ativo = { serial_number : req.query['serial_number']};
+            ativo = { serial_number: req.query['serial_number'] };
             getAtivo(ativo, connection, function (error, result) {
                 if (error) {
-                    console.log('erro na pesquisa atualizarAtivoController');
-                    res.render('../views/error.ejs', { ativo : null, error: "Erro ao pesquisar serial number: " + error });
+                    res.render('../views/error.ejs', { ativo: null, error: "Erro ao pesquisar serial number: " + error });
                 } else if (result != 0 && error == null) {
-                    console.log('pesquisa deu certo');
-                    console.log(result);
                     ativo = JSON.parse(JSON.stringify(result));
                     ativo = {
                         id_ativo: ativo[0].id_ativo,
@@ -76,8 +98,7 @@ module.exports = {
                     };
                     res.render('../views/ativo/atualizar.ejs', { ativo: ativo, error: null });
                 } else {
-                    console.log('nao encontrou o item atualizarAtivoController');
-                    res.render('../views/ativo/atualizar.ejs', { ativo : null, error: 'Pesquisa pelo ativo ' + ativo.serial_number + ' não encontado!' });
+                    res.render('../views/ativo/atualizar.ejs', { ativo: null, error: 'Pesquisa pelo ativo ' + ativo.serial_number + ' não encontado!' });
                 }
             });
         }
@@ -100,7 +121,7 @@ module.exports = {
         }
         setAtivoUpdate(ativo, app.config.dbServer(), function (error, result) {
             if (error) {
-                res.render('../views/error.ejs', { error: error });
+                res.render('../views/error.ejs', { error: "Erro ao atualizar dados: " + error });
             } else {
                 res.redirect('/');
             }

@@ -33,7 +33,7 @@
     <h4 style="margin-top: 50px;">Dados do ativo</h4>
     <div class="form-group">
       <label for="id_ativo">ID</label>
-      <input type="number" class="form-control" name="id_ativo" value="<%= ativo.id_ativo %>">
+      <input type="number" class="form-control" name="id_ativo" readonly value="<%= ativo.id_ativo %>">
     </div>
     <div class="form-group">
       <label for="tipo">Tipo</label>
@@ -62,7 +62,7 @@
       </div>
       <div class="form-group">
       <label for="registrado_em">Registrado em</label>
-      <input type="text" class="form-control" name="registrado_em" disabled value="<%= ativo.registrado_em %>">
+      <input type="text" class="form-control" name="registrado_em" readonly value="<%= ativo.registrado_em %>">
     </div>
     <div class="d-flex justify-content-center">
       <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Atualizar</button>

@@ -17,7 +17,6 @@ module.exports = {
         connection.query(querysql, callback);
     },
     setAtivoUpdate: function (ativo, connection, callback) {
-        console.log(ativo);
         querysql = `UPDATE estoque.ativo SET tipo = "${ativo.tipo}", marca = "${ativo.marca}", modelo = "${ativo.modelo}", serial_number = "${ativo.serial_number}", desgaste = "${ativo.desgaste}", disponibilidade = "${ativo.disponibilidade}" WHERE id_ativo = '${ativo.id_ativo}';`
         connection.query(querysql, callback);
     }
