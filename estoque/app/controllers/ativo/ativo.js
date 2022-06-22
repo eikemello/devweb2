@@ -1,4 +1,4 @@
-const { setAtivo } = require('../../models/home');
+const { setAtivo, setAtivoUpdate } = require('../../models/home');
 const { getAtivo } = require('../../models/ativo');
 const Joi = require('joi');
 
@@ -8,9 +8,9 @@ module.exports = {
         res.render('../views/ativo/registrar.ejs', { errors: null });
     },
     salvarAtivoController: function (app, req, res) {
-        const result_validate = validateData(req.body);
+        const result_validate = validarDadosRegistroAtivo(req.body);
         if (result_validate.error)
-            return res.render('error.ejs', { error: 'Erro ao registrar ativo: ' + result_validate.error.details[0].message });
+            return res.render('error.ejs', { error: 'Erro ao validar dados inseridos: ' + result_validate.error.details[0].message });
 
         console.log("[controller salvarAtivo > ", req.body);
         ativo = {
@@ -65,6 +65,7 @@ module.exports = {
                     console.log(result);
                     ativo = JSON.parse(JSON.stringify(result));
                     ativo = {
+                        id_ativo: ativo[0].id_ativo,
                         tipo: ativo[0].tipo,
                         marca: ativo[0].marca,
                         modelo: ativo[0].modelo,
@@ -81,15 +82,52 @@ module.exports = {
             });
         }
     },
+    salvarAtualizaçãoAtivoController: function (app, req, res) {
+        console.log("[salvarAtualizaçãoAtivoController]1");
+        const result_validate = validarDadosAtualizaçãoAtivo(req.body);
+        if (result_validate.error)
+            return res.render('error.ejs', { error: 'Erro ao validar dados inseridos: ' + result_validate.error.details[0].message });
+
+        console.log("[controller salvarAtivo > ", req.body);
+        ativo = {
+            id_ativo: req.body.id_ativo,
+            tipo: req.body.tipo,
+            marca: req.body.marca,
+            modelo: req.body.modelo,
+            serial_number: req.body.serial_number,
+            disponibilidade: req.body.disponibilidade,
+            desgaste: req.body.desgaste
+        }
+        setAtivoUpdate(ativo, app.config.dbServer(), function (error, result) {
+            if (error) {
+                res.render('../views/error.ejs', { error: error });
+            } else {
+                res.redirect('/');
+            }
+        });
+    },
 }
 
-const validateData = (data) => {
+const validarDadosRegistroAtivo = (data) => {
     const schema = Joi.object({
         tipo: Joi.string().min(1).max(50).required(),
         marca: Joi.string().min(1).max(25).required(),
         modelo: Joi.string().min(1).max(30).required(),
         serial_number: Joi.string().min(1).max(50).required(),
-        desgaste: Joi.string().min(1).max(20).alphanum().required(),
+        desgaste: Joi.string().min(1).max(20).required(),
+    });
+    return schema.validate(data);
+}
+
+const validarDadosAtualizaçãoAtivo = (data) => {
+    const schema = Joi.object({
+        id_ativo: Joi.number().min(1).required(),
+        tipo: Joi.string().min(1).max(50).required(),
+        marca: Joi.string().min(1).max(25).required(),
+        modelo: Joi.string().min(1).max(30).required(),
+        serial_number: Joi.string().min(1).max(50).required(),
+        desgaste: Joi.string().min(1).max(20).required(),
+        disponibilidade: Joi.string().min(1).max(20).required(),
     });
     return schema.validate(data);
 }

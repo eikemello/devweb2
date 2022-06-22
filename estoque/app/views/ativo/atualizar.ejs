@@ -29,35 +29,44 @@
   <%}%>
   <% if (ativo) {%>
 
-  <form action="/ativo/atualizar/salvar" method="post"></form>
-  <h4 style="margin-top: 50px;">Dados do ativo</h4>
-  <div class="form-group">
-    <label for="tipo">Tipo</label>
-    <input type="text" class="form-control" id="tipo" value="<%= ativo.tipo %>">
-  </div>
-  <div class="form-group">
-    <label for="marca">Marca</label>
-    <input type="text" class="form-control" id="marca" value="<%= ativo.marca %>">
-  </div>
-  <div class="form-group">
-    <label for="modelo">Modelo</label>
-    <input type="text" class="form-control" id="modelo" value="<%= ativo.modelo %>">
-  </div>
-  <div class="form-group">
-    <label for="serial_number">Serial Number</label>
-    <input type="text" class="form-control" id="serial_number" value="<%= ativo.serial_number %>">
-  </div>
-  <div class="form-group">
-    <label for="desgaste">Desgaste</label>
-    <input type="text" class="form-control" id="desgaste" value="<%= ativo.desgaste %>">
-  </div>
-  <div class="form-group">
-    <label for="registrado_em">Registrado em</label>
-    <input type="text" class="form-control" id="registrado_em" value="<%= ativo.registrado_em %>">
-  </div>
-  <div class="d-flex justify-content-center">
-    <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Atualizar</button>
-  </div>
+  <form action="/ativo/atualizar/salvar" method="POST">
+    <h4 style="margin-top: 50px;">Dados do ativo</h4>
+    <div class="form-group">
+      <label for="id_ativo">ID</label>
+      <input type="number" class="form-control" name="id_ativo" value="<%= ativo.id_ativo %>">
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo</label>
+      <input type="text" class="form-control" name="tipo" value="<%= ativo.tipo %>">
+    </div>
+    <div class="form-group">
+      <label for="marca">Marca</label>
+      <input type="text" class="form-control" name="marca" value="<%= ativo.marca %>">
+    </div>
+    <div class="form-group">
+      <label for="modelo">Modelo</label>
+      <input type="text" class="form-control" name="modelo" value="<%= ativo.modelo %>">
+    </div>
+    <div class="form-group">
+      <label for="serial_number">Serial Number</label>
+      <input type="text" class="form-control" name="serial_number" value="<%= ativo.serial_number %>">
+    </div>
+    <div class="form-group">
+      <label for="desgaste">Desgaste</label>
+      <input type="text" class="form-control" name="desgaste" value="<%= ativo.desgaste %>">
+    </div>
+    <div class="form-group">
+      <div class="form-group">
+        <label for="Disponibilidade">Disponibilidade</label>
+        <input type="text" class="form-control" name="disponibilidade" value="<%= ativo.disponibilidade %>">
+      </div>
+      <div class="form-group">
+      <label for="registrado_em">Registrado em</label>
+      <input type="text" class="form-control" name="registrado_em" disabled value="<%= ativo.registrado_em %>">
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" value="enviar" class="btn" style="background-color: lightblue;">Atualizar</button>
+    </div>
   </form>
   <%}%>
 

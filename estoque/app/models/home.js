@@ -13,7 +13,12 @@ module.exports = {
         connection.query(querysql, callback);
     },
     setAtivo: function (ativo, connection, callback) {
-        querysql = `INSERT INTO estoque.ativo (tipo, marca, modelo, serial_number, disponibilidade, desgaste) VALUES ("${ativo.tipo}", "${ativo.marca}", "${ativo.modelo}","${ativoserial_number}", "${ativo.disponibilidade}", "${ativo.desgaste}");`
+        querysql = `INSERT INTO estoque.ativo (tipo, marca, modelo, serial_number, disponibilidade, desgaste) VALUES ("${ativo.tipo}", "${ativo.marca}", "${ativo.modelo}","${ativo.serial_number}", "${ativo.disponibilidade}", "${ativo.desgaste}");`
+        connection.query(querysql, callback);
+    },
+    setAtivoUpdate: function (ativo, connection, callback) {
+        console.log(ativo);
+        querysql = `UPDATE estoque.ativo SET tipo = "${ativo.tipo}", marca = "${ativo.marca}", modelo = "${ativo.modelo}", serial_number = "${ativo.serial_number}", desgaste = "${ativo.desgaste}", disponibilidade = "${ativo.disponibilidade}" WHERE id_ativo = '${ativo.id_ativo}';`
         connection.query(querysql, callback);
     }
 }
