@@ -1,6 +1,6 @@
 var querysql = null;
 module.exports = {
-    getAtivo: function (connection, callback) {
+    getAtivoTodos: function (connection, callback) {
         querysql = 'select * from ativo;';
         connection.query(querysql, callback);
     },

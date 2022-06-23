@@ -7,7 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pesquisar Ativo</title>
 
-  <link rel="stylesheet" href="/app/views/ativo/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css" />
+  
+  <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
   <style>
     .center-title {
       display: flex;
@@ -23,8 +27,49 @@
   <header>
     <%- include('../header.ejs'); %>
   </header>
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <h3>Pesquisar Ativo</h3>
+  </div>
   <div>
-    <h2 class="center-title">Pesquisar Ativos</h2>
+    <div class="container" style="max-width: inherit;">
+      <div class="row">
+        <div class="col-sm">
+          <% if ( ativo != null ) { %>
+          <div class="table-responsive-sm">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">Tipo</th>
+                  <th class="text-center">Modelo</th>
+                  <th class="text-center">Marca</th>
+                  <th class="text-center">Serial Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% ativo.forEach(function(ativos){ %>
+                <tr>
+                  <td class="text-center"><%= ativos.tipo%></td>
+                  <td class="text-center"><%= ativos.modelo%></td>
+                  <td class="text-center"><%= ativos.marca %></td>
+                  <td class="text-center"><%= ativos.serial_number%></td>
+                </tr>
+                <% })%>
+              </tbody>
+            </table>
+          <h6 class="text-center">Ativos totais: <%= ativo.length%></h6>
+          </div>
+          <%} else {%>
+          <div class="card-columns">
+            <div class="card">
+              <div class="card-body">
+                <h4>Nenhum ativo registrado!</h4>
+              </div>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

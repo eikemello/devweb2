@@ -1,4 +1,4 @@
-const { setAtivo, setAtivoUpdate } = require('../../models/home');
+const { setAtivo, setAtivoUpdate, getAtivoTodos } = require('../../models/home');
 const { getAtivo, removeAtivo } = require('../../models/ativo');
 const Joi = require('joi');
 let result_validate = null;
@@ -32,7 +32,18 @@ module.exports = {
     },
     pesquisarAtivoController: function (app, req, res) {
         console.log("[pesquisarAtivoController]");
-        res.render('../views/ativo/pesquisar.ejs', { error: null, ativo: null });
+        getAtivoTodos(app.config.dbServer(), function (error, result) {
+            if (error) {
+                logger.log({
+                    level: 'error',
+                    message: error.message,
+                    timestamp: Date.now()
+                });
+                res.send("Problemas com a consulta ao banco: " + error.message);
+            } else {
+                res.render('../views/ativo/pesquisar.ejs', { error: null, ativo: result });
+            }
+        });
     },
     removerAtivoController: function (app, req, res) {
         console.log("[removerAtivoController]");

@@ -1,9 +1,8 @@
-const { getAtivos, getEmprestimo  } = require('../models/home');
+const { getAtivoTodos, getEmprestimo  } = require('../models/home');
 const logger = require('../../config/logger');
 
 module.exports.homeListar = function (app, req, res) {
-    let connection = app.config.dbServer();
-    getAtivos(connection, function (error, result) {
+    getAtivoTodos(app.config.dbServer(), function (error, result) {
         if (error) {
             logger.log({
                 level: 'error',
@@ -13,7 +12,7 @@ module.exports.homeListar = function (app, req, res) {
             res.send("Problemas com a conexão: " + error.message);
         } else {
             const result_ativo = result;
-            getEmprestimo(connection, function (error, result) {
+            getEmprestimo(app.config.dbServer(), function (error, result) {
                 if (error) {
                     logger.log({
                         level: 'error',
