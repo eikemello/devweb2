@@ -156,6 +156,7 @@ const validarDadosAtualizaçãoAtivo = (data) => {
         serial_number: Joi.string().min(1).max(50).required(),
         desgaste: Joi.string().min(1).max(20).required(),
         disponibilidade: Joi.string().min(1).max(20).required(),
+        registrado_em: Joi.string().min(1).max(30).required(),
     });
     return schema.validate(data);
 }
