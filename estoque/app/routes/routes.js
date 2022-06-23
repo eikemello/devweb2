@@ -1,5 +1,5 @@
 const { homeListar } = require('../controllers/home/home');
-
+const { validarUsuarioController, criarUsuarioController } = require('../controllers/user/user');
 const { registrarAtivoController, salvarAtivoController, atualizarAtivoController,
     pesquisarAtivoController, salvarAtualizaçãoAtivoController,
     removerAtivoController, removerAtivoControllerPOST } = require('../controllers/ativo/ativo');
@@ -11,21 +11,47 @@ const { registrarTransferenciaController, salvarTransferenciaController,
 module.exports = {
     homeRoute: function (app) {
         app.get('/', function (req, res) {
-            homeListar(app, req, res);
+            if (req.session.authorized == true)
+                homeListar(app, req, res);
+            else
+                res.render('../views/login/login.ejs');
         });
     },
-
+    loginRoute: function (app) {
+        app.get('/login', function (req, res) {
+            res.render('../views/login/login.ejs');
+        });
+    },
+    loginValidarRoute: function (app) {
+        app.post('/login/criarusuario', function (req, res) {
+            criarUsuarioController(app, req, res);
+        });
+    },
+    loginCriaUsuarioRoute: function (app) {
+        app.post('/login/validar', function (req, res) {
+            validarUsuarioController(app, req, res);
+        });
+    },
+    logoutRoute: function (app) {
+        app.get('/logout', function (req, res) {
+            req.session.authorized = false;
+            res.render('../views/login/login.ejs');
+        });
+    },
     //---------------rotas ativos-------------------------
     registrarAtivoRoute: function (app) {
         app.get('/ativo/registrar', function (req, res) {
             try {
-                registrarAtivoController(app, req, res);
+                if (req.session.authorized == true)
+
+                    registrarAtivoController(app, req, res);
+                else
+                    res.render('../views/login/login.ejs');
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de registro de ativos: ' + error });
             }
         });
     },
-
     salvarAtivoRoute: function (app) {
         app.post('/ativo/salvar', function (req, res) {
             try {
@@ -39,7 +65,10 @@ module.exports = {
     pesquisarAtivoRoute: function (app) {
         app.get('/ativo/pesquisar', function (req, res) {
             try {
-                pesquisarAtivoController(app, req, res);
+                if (req.session.authorized == true)
+                    pesquisarAtivoController(app, req, res);
+                else
+                    res.render('../views/login/login.ejs');
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de pesquisa de ativos: ' + error });
             }
@@ -49,7 +78,10 @@ module.exports = {
     atualizarAtivoRoute: function (app) {
         app.get('/ativo/atualizar', function (req, res) {
             try {
-                atualizarAtivoController(app, req, res);
+                if (req.session.authorized == true)
+                    atualizarAtivoController(app, req, res);
+                else
+                    res.render('../views/login/login.ejs');
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de atualização de ativos: ' + error });
             }
@@ -68,7 +100,10 @@ module.exports = {
     removerAtivoRouteGET: function (app) {
         app.get('/ativo/remover', function (req, res) {
             try {
-                removerAtivoController(app, req, res);
+                if (req.session.authorized == true)
+                    removerAtivoController(app, req, res);
+                else
+                    res.render('../views/login/login.ejs');
             } catch (error) {
                 res.render('error.ejs', { error: 'Erro ao carregar página de remoção de ativos: ' + error });
             }

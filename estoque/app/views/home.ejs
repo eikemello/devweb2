@@ -16,7 +16,7 @@
   <div class="container" style="max-width: inherit;">
     <div class="row" style="margin-top: 20px;">
       <div class="col-sm">
-        <% if ( ativo != 0 ) { %>
+        <% if ( ativo != null ) { %>
         <h4 class="text-center">Ativos</h4>
         <caption>Ativos totais: <%= ativo.length%></caption>
         <div class="table-responsive-sm">
@@ -54,7 +54,7 @@
         <%}%>
       </div>
       <div class="col-sm">
-        <%if ( emprestimo != 0 ) {%>
+        <%if ( emprestimo != null ) {%>
         <h4 class="text-center">Empréstimos</h4>
         <caption>Empréstimos totais: <%= emprestimo.length%></caption>
         <div class="table-responsive-sm">
@@ -90,7 +90,7 @@
         <%}%>
       </div>
       <div class="col">
-        <%if ( transferencia != 0 ) {%>
+        <%if ( transferencia != null ) {%>
         <h4 class="text-center">Transferências</h4>
         <caption>Transferências totais: <%= transferencia.length%></caption>
         <div class="table-responsive-sm ">

@@ -87,7 +87,7 @@ CREATE TABLE transferencia (
     id_ativo INT NOT NULL,
     id_novo_responsavel INT NOT NULL,
     id_antigo_responsavel INT NOT NULL,
-    transferido_em TIMESTAMP,
+    transferido_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_transfererencia`),
     FOREIGN KEY (id_ativo) REFERENCES ativo (id_ativo),
     FOREIGN KEY (id_novo_responsavel) REFERENCES funcionario (id_funcionario),
@@ -108,10 +108,12 @@ INSERT INTO transferencia (id_ativo, id_novo_responsavel, id_antigo_responsavel)
 SELECT * FROM transferencia;
 
 CREATE TABLE usuarios ( 
-idusuario INT NOT NULL AUTO_INCREMENT,
-nome VARCHAR (45) NOT NULL,
-username VARCHAR(20) NOT NULL,
+id_usuario INT NOT NULL AUTO_INCREMENT,
+nome VARCHAR (50) NOT NULL,
+email VARCHAR(30) NOT NULL,
 password_user VARCHAR(32) NOT NULL, 
-registrado_em TIMESTAMP,   
-PRIMARY KEY (`idusuario`)
+registrado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
+PRIMARY KEY (`id_usuario`)
 ); 
+
+select * from estoque.usuarios;

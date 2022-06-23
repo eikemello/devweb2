@@ -2,11 +2,11 @@ var url = require("url");
 
 module.exports = {
     registrarTransferenciaController: function (app, req, res) {
-        console.log("[registrarTransferenciaController]")
+        console.log("[registrarTransferenciaController]");
         res.render('../views/transferencia/registrar.ejs', { errors: null, transfer: { tipo: '', marca: '', modelo: '', desgaste: '' } });
     },
     salvarTransferenciaController: function (app, req, res) {
-        console.log("[salvarTransferenciaController]")
+        console.log("[salvarTransferenciaController]");
         let ativo = req.body;
         let connection = app.config.dbServer();
         console.log("[controller salvartransferencia > ", ativo);
@@ -23,11 +23,11 @@ module.exports = {
         }); */
     },
     pesquisarTransferenciaController: function (app, req, res) {
-        console.log("[pesquisarTransferenciaController]")
+        console.log("[pesquisarTransferenciaController]");
         res.render('./transferencia/pesquisar.ejs', { errors: null, transfer: { tipo: '', marca: '', modelo: '', desgaste: '' } });
     },
     removerTransferenciaController: function (app, req, res) {
-        console.log("[removerTransferenciaController]")
+        console.log("[removerTransferenciaController]");
         res.render('../views/transferencia/remover.ejs');
         /* var q = url.parse(req.url, true);
                 let connection = app.config.dbServer();
@@ -54,7 +54,7 @@ module.exports = {
         }); */
     },
     atualizarTransferenciaController: function (app, req, res) {
-        console.log("[atualizarTransferenciaController]")
+        console.log("[atualizarTransferenciaController]");
             /* var q = url.parse(req.url, true);
             let connection = app.config.dbServer();
             ativo = {

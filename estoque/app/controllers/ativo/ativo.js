@@ -1,14 +1,14 @@
 const { setAtivo, setAtivoUpdate } = require('../../models/home');
 const { getAtivo, removeAtivo } = require('../../models/ativo');
 const Joi = require('joi');
-
+let result_validate = null;
 module.exports = {
     registrarAtivoController: function (app, req, res) {
         console.log("[registrarAtivoController]");
         res.render('../views/ativo/registrar.ejs', { errors: null });
     },
     salvarAtivoController: function (app, req, res) {
-        const result_validate = validarDadosRegistroAtivo(req.body);
+        result_validate = validarDadosRegistroAtivo(req.body);
         if (result_validate.error)
             return res.render('error.ejs', { error: 'Erro ao validar dados inseridos: ' + result_validate.error.details[0].message });
 
@@ -23,7 +23,7 @@ module.exports = {
         }
         setAtivo(ativo, app.config.dbServer(), function (error, result) {
             if (error) {
-                res.redirect('../../views/error.ejs', { error: error });
+                res.redirect('../../views/error.ejs', { error: "Erro ao salvar dados: " + error });
             } else {
                 res.redirect('/');
             }
@@ -39,9 +39,8 @@ module.exports = {
         if (req.query['serial_number'] == '' || req.query['serial_number'] == null) {
             res.render('../views/ativo/remover.ejs', { error: null, ativo: null });
         } else {
-            const connection = app.config.dbServer();
             ativo = { serial_number: req.query['serial_number'] };
-            getAtivo(ativo, connection, function (error, result) {
+            getAtivo(ativo, app.config.dbServer(), function (error, result) {
                 if (error) {
                     res.render('../views/error.ejs', { ativo: null, error: "Erro ao pesquisar serial number: " + error });
                 } else if (result != 0 && error == null) {
@@ -64,7 +63,6 @@ module.exports = {
     },
     removerAtivoControllerPOST: function (app, req, res) {
         console.log("[removerAtivoControllerPOST]");
-        console.log(req.body);
         removeAtivo(req.body, app.config.dbServer(), function (error, result) {
             if (error) {
                 res.render('../views/error.ejs', { error: "Erro ao remover ativo: " + error });
@@ -79,9 +77,8 @@ module.exports = {
         if (req.query['serial_number'] == '' || req.query['serial_number'] == null) {
             res.render('../views/ativo/atualizar.ejs', { ativo: null, error: null });
         } else {
-            const connection = app.config.dbServer();
             ativo = { serial_number: req.query['serial_number'] };
-            getAtivo(ativo, connection, function (error, result) {
+            getAtivo(ativo, app.config.dbServer(), function (error, result) {
                 if (error) {
                     res.render('../views/error.ejs', { ativo: null, error: "Erro ao pesquisar serial number: " + error });
                 } else if (result != 0 && error == null) {
@@ -105,11 +102,10 @@ module.exports = {
     },
     salvarAtualizaçãoAtivoController: function (app, req, res) {
         console.log("[salvarAtualizaçãoAtivoController]1");
-        const result_validate = validarDadosAtualizaçãoAtivo(req.body);
+        result_validate = validarDadosAtualizaçãoAtivo(req.body);
         if (result_validate.error)
             return res.render('error.ejs', { error: 'Erro ao validar dados inseridos: ' + result_validate.error.details[0].message });
 
-        console.log("[controller salvarAtivo > ", req.body);
         ativo = {
             id_ativo: req.body.id_ativo,
             tipo: req.body.tipo,

@@ -4,6 +4,10 @@ const routes = require('./app/routes/routes');
 
 
 routes.homeRoute(app);
+routes.loginRoute(app);
+routes.loginCriaUsuarioRoute(app);
+routes.loginValidarRoute(app);
+routes.logoutRoute(app);
 
 routes.registrarAtivoRoute(app);
 routes.salvarAtivoRoute(app);
